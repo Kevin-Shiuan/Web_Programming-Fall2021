@@ -1,0 +1,40 @@
+  * {
+    box-sizing: border-box;
+  }
+  
+  p {
+    color: red;
+    text-align: center;
+  }
+  
+  .row {
+    display: flex;
+    justify-content: center;
+    padding-left: min(16px,5%);
+    padding-right: min(16px,5%);
+  }
+
+  .mainImageWrapper {
+    background-color: rgb(255, 255, 255);
+    width: 50vw;
+    max-width: 300px;
+    aspect-ratio: 1.85 / 1;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+  }
+
+  .mainImage {
+    object-fit: cover;
+    width: 100%;
+    transition: transform 0.2s cubic-bezier(0.35, 0.15, 0.2, 0.8);
+  }
+
+  .mainImage:hover{
+    transform: scale(1.1, 1.1);
+    opacity: 0.8;
+    filter: blur(2px);
+  }
