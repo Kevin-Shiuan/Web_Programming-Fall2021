@@ -135,19 +135,68 @@
   .albumDescription .captions{
     padding-top: 0px;
   }
+  .actionBar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    padding: 4px 8px 0px 8px;
+  }
+  .actionBar .delete{
+    border-radius: 12px;
+    padding: 8px;
+    height: 36px;
+    width: 36px; 
+  }
+  .actionBar .delete>img{
+    height: 20px;
+    width: 20px;
+  }
+  .actionBar .delete:hover{
+    background-color: #ffc9c9;
+  }
+  .actionBar .add{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 48px;
+    padding: 8px;
+    height: 36px;
+    margin-left: 4px;    
+  }
+  .actionBar .add>img{
+    height: 20px;
+    width: 20px;
+    margin-right: 8px;
+  }
+  .actionBar .add:hover{
+    background-color: #e4edf3;
+    border: 1px;
+    border: 2px solid rgb(38, 53, 85);
+    padding: 4px;
+  }
+  .secondColumn{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 15rem;
+    height: 100%;
+    padding: 8px 0px;
+  }
   .photosList{
     display: flex;
     flex-direction: column;
     align-items: center;
     overflow: scroll;
-    width: 15rem;
-    padding: 8px 0px;
+    width: 100%;
   }
   .photos{
     width: 100%;
     padding: 8px 12px;
   }
-  .photos img{
+  .photos>img{
     width: 100%;
     transition: transform 0.5s cubic-bezier(0.1, 0.1, 0, 1);
   }
@@ -157,7 +206,34 @@
   }
   .selectedPhoto>img{
     transform: scale(1.08, 1.08);
-  }  
+  } 
+  .photos.add>div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background-color: rgb(238,238,238);
+    padding: 16px 0px;
+    aspect-ratio: 16/9;
+    border-radius: 12px;
+    transition: transform 0.5s cubic-bezier(0.1, 0.1, 0, 1);
+  }
+  .photos.add>div:hover{
+    transform: scale(1.08, 1.08);
+    opacity: 0.8;
+    background-color: rgb(220,220,220);
+  }
+  .button{
+    padding: 8px 0px;
+    margin: 0px;
+    font-size: 10px;
+    font-weight: 900;
+  }
+  .photos.add>img{
+    width: 25%;
+  }
+   
   .listDescription{
     width: 100%;
     padding: 2px 12px 8px 12px;
@@ -177,12 +253,32 @@
     width: 80vw;
     padding: 8px 0px;
   }
+  .headerBar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    padding: 2px 12px 8px 12px;
+  }
+  .actionIcon{
+    border-radius: 12px;
+    padding: 8px;
+    height: 36px;
+    width: 36px; 
+  }
+  .actionIcon>img{
+    height: 20px;
+    width: 20px;
+  }
+  .actionIcon:hover{
+    background-color: #ffc9c9;
+  }
   .infoBar{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     width: 100%;
-    padding: 2px 12px 8px 12px;
+    padding: 0px;
   }
   .infoBar>*{
     margin: 0px;
@@ -202,10 +298,4 @@
     width: 100%;
     height:100%;
     object-fit: contain;
-  }
-  .actionBar{
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    height: 10rem;
   }
