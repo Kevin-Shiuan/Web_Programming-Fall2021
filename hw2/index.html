@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>PhotoStreamer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto Sans TC">
+    <link rel="icon" href="resources/image.svg">
+
+</head>
+
+<body>
+<div class="firstColumn">
+    <!--albums-->
+    <div class="listDescription">
+        <h3>Albums</h3>
+        <h6 id="totalNum" class="captions">9 albums</h6>
+    </div>
+    <div id="albumsList">
+    </div>
+    <div class="actionBar">
+        <div id="deleteAlbum" class="delete"><img src="resources/delete.svg" alt="delete"></div>
+        <div id="newAlbum" class="add"><img src="resources/add.svg" alt="add"><p class="button">NEW ALBUM</p></div>
+    </div>
+
+</div>
+<div class="secondColumn">
+    <!--pictuires-->
+    <div class="listDescription">
+        <h3 id="nameOfSelectedAlbum">Tessellation</h3>
+        <h6 id="tag" class="captions">captions</h6>
+    </div>
+    <div id="photosList">
+    </div>
+</div>
+<hr>
+<div class="mainSection">
+    <!--mainImage-->
+    <div class="headerBar">
+        <div class="infoBar">
+            <h3 id="nameOfSelectedPhoto">color 1</h3>
+            <h6 id="moreInfo" class="captions">October 09, 2021 at Tainan, Taiwan</h6>
+        </div>
+        <div id="deletePhoto" class="actionIcon">
+            <img src="resources/delete.svg" alt="delete">
+        </div>
+    </div>
+    <div id="mainImageWrapper">
+        <img id="mainImg" >
+    </div>
+</div>
+
+</body>
+<script src="main.js"></script>
+</html>
