@@ -23,7 +23,7 @@
     width: 10rem;
     height: 100%;
     padding: 8px 0px;
-    background-color: rgb(238,238,238);
+    background-color: rgb(230,230,230);
   }
   #albumsList{
     flex:1;
@@ -47,7 +47,7 @@
     max-height: 6rem;
     object-fit: cover;
   }
-  .albums.default:hover{
+  .albums:hover{
     background-color: rgb(220,220,220);
   }
   .selectedAlbum{
@@ -127,7 +127,7 @@
   .photos{
     width: 100%;
     max-height: 12rem;
-    padding: 10px 20px;
+    padding: 8px 20px;
   }
   .photos>img{
     width: 100%;
@@ -136,12 +136,13 @@
     object-fit: cover;
     transition: transform 0.5s cubic-bezier(0.1, 0.1, 0, 1);
   }
-  .photos.default>img:hover{
+  .photos >img:hover{
     transform: scale(1.08, 1.08);
     opacity: 0.8;
   }
   .selectedPhoto>img{
-    transform: scale(1.08, 1.08);
+    border: 2px rgb(38, 53, 85) solid;
+    transform: scale(1.05, 1.05);
   } 
   .photos.add>div{
     display: flex;
