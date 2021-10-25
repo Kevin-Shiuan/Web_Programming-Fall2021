@@ -5,9 +5,11 @@ let body = document.getElementsByClassName("todo-app__root")[0],
     todoItem = document.getElementsByClassName("todo-app__item"),
     totalNum = document.getElementsByClassName("todo-app__total")[0],
     footer = document.getElementById("todo-footer"),
-    filter = document.getElementsByClassName("todo-app__view-buttons")[0];
+    filter = document.getElementsByClassName("todo-app__view-buttons")[0],
+    clearbutton = document.getElementsByClassName("todo-app__clean")[0];
 
 var ToDoList = [];
+var filter_state=0;
 
 class toDoItem{
     constructor(name, n) {
@@ -35,7 +37,7 @@ class toDoItem{
     setState(newState){
         this.done = newState;
         todoItem[this.index].getElementsByClassName("todo-app__item-detail")[0].classList.toggle("done");
-        SumTotal();
+        FooterUpdate();
     }
 }
 
@@ -50,6 +52,16 @@ function CreateItem(text, n, check){
     div.setAttribute('class',"todo-app__checkbox");
     div.addEventListener('click', function (e) {
         ToDoList[n].setState(!ToDoList[n].state());
+        switch(filter_state){
+            case 1:
+                Display_flex(todoItem[n],!ToDoList[n].state());
+                break;
+            case 2:
+                Display_flex(todoItem[n],ToDoList[n].state());
+                break;
+            default:
+                Display_flex(todoItem[n],true);
+        }
       }, false);
     input.setAttribute('type',"checkbox");
     if(check) input.checked=true;
@@ -73,21 +85,38 @@ function CreateItem(text, n, check){
     li.appendChild(div);
     li.appendChild(h1);
     li.appendChild(img);
+    switch(filter_state){
+        case 1:
+            Display_flex(li,!check);
+            break;
+        case 2:
+            Display_flex(li,check);
+            break;
+        default:
+            Display_flex(li,true);
+    }
     todoLIST.appendChild(li);
 }
 
-function Visibility_flex(tag, boolean){
+function Display_flex(tag, boolean){
     if(boolean)
         tag.style.display='flex';
     else
         tag.style.display='none';
 }
 
-function Visibility_block(tag, boolean){
+function Display_block(tag, boolean){
     if(boolean)
         tag.style.display='block';
     else
         tag.style.display='none';
+}
+
+function Visibility(tag, boolean){
+    if(boolean)
+        tag.style.visibility='visible';
+    else
+        tag.style.visibility='hidden';
 }
 
 function RefreshIndex(){
@@ -106,33 +135,74 @@ function RefreshIndex(){
     }
 }
 
-function SumTotal(){
-    var n=ToDoList.length;
+function FooterUpdate(){
+    var n = ToDoList.length,
+        n_initial = ToDoList.length;
     for(var i=0;i<ToDoList.length;i++){
         if(ToDoList[i].state())
             n--;
     }
     totalNum.innerHTML=(`${n} left`);
+    // console.log(n_initial-n);
+    Visibility(clearbutton, n_initial-n);
 }
 
 function RefreshMain(){
     if(todoItem.length === 0){
-        Visibility_block(todoLIST,0);
-        Visibility_flex(footer,0);
+        Display_block(todoLIST,0);
+        Display_flex(footer,0);
     }
     else{
-        Visibility_block(todoLIST,1);
-        Visibility_flex(footer,1);
+        Display_block(todoLIST,1);
+        Display_flex(footer,1);
     }
-    SumTotal();
+    FooterUpdate();
 }
 
+function Filter_All(){
+    for(var n=0;n<todoItem.length;n++){
+        Display_flex(todoItem[n],true);
+    }
+}
+function Filter_Active(){
+    for(var n=0;n<todoItem.length;n++){
+        Display_flex(todoItem[n],!ToDoList[n].state());
+    }
+}
+function Filter_Completed(){
+    for(var n=0;n<todoItem.length;n++){
+        Display_flex(todoItem[n],ToDoList[n].state());
+    }
+}
+function Filter(){
+    switch(filter_state){
+        case 1:
+            Filter_Active();
+            break;
+        case 2:
+            Filter_Completed();
+            break;
+        default:
+            Filter_All();
+    }
+}
+function Clear(){
+    for(var n=0;n<todoItem.length;n++){
+        if(ToDoList[n].state()){
+            ToDoList.splice(n, 1);
+            todoLIST.removeChild(todoItem[n]);
+            n--;
+        }
+    }
+    RefreshIndex();
+    FooterUpdate();
+}
 
 //main
 RefreshMain();
-input[0].addEventListener("keyup", function(event) {
-    event.preventDefault();
-    if (event.keyCode === 13) {
+input[0].addEventListener("keyup", function(e) {
+    e.preventDefault();
+    if (e.keyCode === 13) {
         ToDoList.push(new toDoItem(`${input[0].value}`,todoItem.length));
         input[0].value='';
         RefreshMain();
@@ -140,10 +210,30 @@ input[0].addEventListener("keyup", function(event) {
 });
 
 filter.addEventListener('click', function(e){
-    console.log(e.target.textContent);
-    // 判斷目標元素若是 li 則執行 console.log
-    // if( e.target.tagName.toLowerCase() === 'li' ){
-    //   console.log(e.target.textContent);
-    // }
-  
-  }, false);
+    // console.log(e.target.textContent);
+    for(var i=0;i<filter.getElementsByTagName("button").length;i++){
+        filter.getElementsByTagName("button")[i].classList.remove("active");
+    }
+    e.target.classList.add("active");
+    switch (e.target.textContent) {
+        case 'All':
+            Filter_All();
+            filter_state=0;
+            break;
+        case 'Active':
+            Filter_Active();
+            filter_state=1;
+            break;
+        case 'Completed':
+            Filter_Completed();
+            filter_state=2;
+            break;   
+        default:
+        console.log("error occur at filter");
+    }
+
+}, false);
+filter.getElementsByTagName("button")[0].classList.add("active");
+clearbutton.addEventListener('click', function(e){
+    Clear();
+}, false);
