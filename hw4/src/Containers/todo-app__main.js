@@ -21,7 +21,7 @@ function TodoAppMain(props){
     }
     useEffect( ()=>{
         props.SendRemain(remain);
-    }, [remain] );
+    }, [props,remain] );
 
     return(
         <section className="todo-app__main">
