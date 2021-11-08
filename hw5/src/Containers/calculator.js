@@ -1,12 +1,54 @@
-import React, {useEffect, useState, Component}  from 'react';
+import React, {useEffect, useState}  from 'react';
 import Button from '../Components/button';
 import PrimaryText from '../Components/primaryText';
+import SecondaryText from '../Components/secondaryText';
 
 function Calculator() {
-    const[Input,setInput]=useState("");
-    const[String,setString]=useState("test")
+    const[Input,setInput]=useState(null);
+    const[Result,setResult]=useState(null);
+    const[String,setString]=useState(null);
+    const[Buffer,setBuffer]=useState(null);
+    const[Equation,setEquation]=useState("");// eval("3+26*54/32")
     const getInput = (input)=>{
-        setString(input);
+        // setInput(input);
+        switch (input){
+            case 'C':
+                setResult(null);
+                setString(null);
+                setEquation(null);
+                setInput(null);
+                setBuffer(null);
+                break;
+            case '±':
+                break;
+            case 'd':
+                break;
+            case '+':
+                setString(String?(String+input): null );
+                setEquation(Equation?(Equation+'+'): (Result?Result+'+':null) );
+                break;
+            case '-':
+                setString(String?(String+input): null );
+                setEquation(Equation?(Equation+'-'): (Result?Result+'-':null) );
+                break;
+            case '÷':
+                setString(String?(String+input): null );
+                setEquation(Equation?(Equation+'/'): (Result?Result+'/':null) );
+                break;
+            case 'x':
+                setString(String?(String+input): null );
+                setEquation(Equation?(Equation+'*'): (Result?Result+'*':null) );
+                break;
+            case '=':
+                setBuffer(String);
+                setResult(eval(Equation));
+                setString(eval(Equation));
+                break;               
+            default:
+                setString(String?(String+input):input);
+                setEquation(Equation?(Equation+input):input);
+        }
+        // console.log(Input);
     }
     const btn=[
         ['C','±','d','÷'],
@@ -16,16 +58,17 @@ function Calculator() {
         ['0','.','='],
     ];
 
+
     return (
         <div id="calculatorWrapper">
             <div id="screenWrapper">
-                <h3 id="secondaryText">1+1</h3>
+                <SecondaryText value={Buffer} />
                 <PrimaryText value={String}/>
             </div>
             {btn.map( (r)=> <div className="row">{
                     r.map( (c)=> <Button name={c} sendInput={getInput} key={c} /> )
                 }
-            </div>) }ç
+            </div>) }
         </div>
     )
 }
