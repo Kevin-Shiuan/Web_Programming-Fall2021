@@ -22,6 +22,8 @@ function Calculator() {
             case '±':
                 break;
             case 'd':
+                setString(String?String.slice(0, -1):null);
+                setEquation(Equation?Equation.slice(0, -1):null);
                 break;
             case '+':
                 setString(String?(String+input): null );
@@ -43,12 +45,13 @@ function Calculator() {
                 setBuffer(String);
                 setResult(eval(Equation));
                 setString(eval(Equation));
+                console.log("Equation= "+Equation);
+                console.log("String= "+String);
                 break;               
             default:
                 setString(String?(String+input):input);
                 setEquation(Equation?(Equation+input):input);
         }
-        // console.log(Input);
     }
     const btn=[
         ['C','±','d','÷'],
@@ -57,7 +60,6 @@ function Calculator() {
         ['1','2','3','+'],
         ['0','.','='],
     ];
-
 
     return (
         <div id="calculatorWrapper">

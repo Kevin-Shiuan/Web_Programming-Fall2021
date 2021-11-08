@@ -22,7 +22,7 @@ function Button(props){
         );
             return(
                 <div className="buttonWrapper">
-                    <div className="button" onClick={ ()=>{props.sendInput(props.name);console.log("d"); }}>
+                    <div className="button" onClick={ ()=>{props.sendInput(props.name);}}>
                         <Delete className="iconButton" type="button" />
                     </div>
                 </div>
