@@ -1,0 +1,16 @@
+{
+  "name": "hw6",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "cd frontend && yarn start",
+    "server": "cd backend && yarn start"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.12.3",
+    "axios": "^0.24.0",
+    "nodemon": "^2.0.15",
+    "styled-components": "^5.3.3"
+  }
+}

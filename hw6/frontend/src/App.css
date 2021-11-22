@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+.App{
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* text-align: center; */
+}
+.inlineTxt{
+  font-family: Quicksand;
+  font-weight: 400;
+}
+.mainInput{
+  height: 8rem;
+  /* background-color: black; */
+  /* padding-top: 0.5rem; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* text-align: center; */
+}
+.secondaryInput{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* text-align: center; */
+}
+.buttonWrapper{
+  height: 100%;
+  padding-top: 2.2rem;
+  padding-left: 1rem;
+}
+
+.result{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.result>*{
+  margin: 8px;
+}
