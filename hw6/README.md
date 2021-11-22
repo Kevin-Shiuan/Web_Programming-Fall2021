@@ -12,4 +12,3 @@ Implemented all function required by the specific way.
 However, I think the input should be checked before sent to backend, including if the number is in range or not, this is to reduce the work of backend. But hw6 specify that catch() must be used, so that I still let backend to judge if the number is in range.
 
 - First time using material desgin component with customized design. Next time will try to use theme to customize material design as customizing component one by one with material is not very easy and not effective.
-
