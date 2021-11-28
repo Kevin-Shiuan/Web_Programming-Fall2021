@@ -6,11 +6,13 @@ const ERROR_MESSAGE_COLOR = '#fb3640';
 
 const ScoreCardContext = createContext({
   messages: [],
+  data:[],
 
   addCardMessage: () => {},
   addRegularMessage: () => {},
   addErrorMessage: () => {},
-  clearMessage: () => {}
+  clearMessage: () => {},
+  setTableData: () =>{}
 });
 
 const makeMessage = (message, color) => {
@@ -19,6 +21,7 @@ const makeMessage = (message, color) => {
 
 const ScoreCardProvider = (props) => {
   const [messages, setMessages] = useState([]);
+  const [data, setData] = useState([]);
 
   const addCardMessage = (message) => {
     setMessages([...messages, makeMessage(message, ADD_MESSAGE_COLOR)]);
@@ -40,16 +43,30 @@ const ScoreCardProvider = (props) => {
     // const temp = [];
     // const newMessage = messages.filter((t)=>false);
     // setMessages(newMessage);
-  }
+  };
+
+  const setTableData = (raw) => {
+    setData(
+      raw.sort( (a, b) =>{
+        var nameA = a.name.toUpperCase(); // ignore upper and lowercase
+        var nameB = b.name.toUpperCase(); // ignore upper and lowercase
+        if (nameA < nameB) return -1;
+        else return 1;
+      })
+    );
+    // setMessages([...messages, makeMessage("Table refreshed", REGULAR_MESSAGE_COLOR)]);
+  };
 
   return (
     <ScoreCardContext.Provider
       value={{
         messages,
+        data,
         addCardMessage,
         addRegularMessage,
         addErrorMessage,
-        clearMessage
+        clearMessage,
+        setTableData
       }}
       {...props}
     />

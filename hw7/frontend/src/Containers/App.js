@@ -54,7 +54,9 @@ const Theme = createTheme({
 const Wrapper = styled.div`
   margin: auto;
   width: 100%;
-  height: 100vh;
+  padding-top: 8vh;
+  padding-bottom: 8vh;
+  // height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
