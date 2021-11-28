@@ -10,7 +10,7 @@ The content of ActionBar change whenever Tab is swapped, the function is as usua
 The console will log what is done and the status, show error is occur. CLEAR CONSOLE button will clear the console.
 
 ## Table
-The table will show all data from database in default, with sorted by name. CLEAR DATABASE button will clear the database, and use a dialog to ensure this action, preventing mis-clearing. However, table will show filtered data according to the last action executed in ActionBar. If query is performed, table will show the result of query only, while add is performed, table will show the all the data related to the name of the last added scoreCard. In order to show all data again, user can use RESET QUERY or SHOW ALL DATA button to reset the table to show default value. The name of the button change according to the active tab.
+The table will show all data from database in default, in which are sorted by name. CLEAR DATABASE button will clear the database, and use a dialog to ensure this action, preventing mis-clearing. However, table will show filtered data according to the last action executed in ActionBar. If query is performed, table will show the result of query only, while add is performed, table will show all the data related to the name of the last added scoreCard. In order to show all data again, user can use RESET QUERY or SHOW ALL DATA button to reset the table to show default value. The name of the button change according to the active tab. If there's error on query, the table will not be displayed and show error. If database is empty, table will also not displayed with caption telling you data base is empty.
 
 
 # Backend structure
