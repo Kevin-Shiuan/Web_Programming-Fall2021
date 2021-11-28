@@ -1,5 +1,5 @@
-All function done including bonus, with modified UX flow and customized UI
-Remember to type in your database_URL in .env.defaults.
+>All function done including bonus, with modified UX flow and customized UI.  
+>Remember to type in your database_URL in .env.defaults.
 
 # How to Use
 There's 3 main part, which is ActionBar, Console, and Table.
