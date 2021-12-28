@@ -82,9 +82,9 @@ export default function Dashboard() {
       document: TASK_DELETED_SUBSCRIPTION,
       updateQuery: (prev, { subscriptionData }) => {
         if (!subscriptionData.data) return prev;
-        console.log(subscriptionData.data);
+        // console.log(subscriptionData.data);
         return {
-          tasks: [subscriptionData.data],
+          tasks: [subscriptionData.data.tasks],
         };
       },
     });
