@@ -1,27 +1,11 @@
-import express from 'express'
-import mongoose from 'mongoose';
-import dotenv from "dotenv-defaults";
-import {WebSocketServer} from 'ws'
-import http from 'http'
+import mongo from "./mongo.js";
+import server from "./server.js";
 
-//connect to moongoDb
-dotenv.config();
-mongoose.connect(process.env.MONGO_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-})
-const db = mongoose.connection
+import "dotenv-defaults/config.js";
 
-const app = express()
-const server = http.createServer(app);
+mongo.connect();
+const port = process.env.PORT | 5000;
 
-db.once('open', () => {
-    console.log('MongoDB connected!')
-
-    const PORT = process.env.PORT || 4000
-
-    server.listen(PORT, function() {
-        console.log(`Server listening on: ws://localhost:${PORT}`);
-    });
-
-})
+server.start({ port }, () => {
+  console.log(`The server is up on port ${port}!`);
+});
