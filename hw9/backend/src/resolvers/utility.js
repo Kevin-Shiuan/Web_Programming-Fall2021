@@ -31,7 +31,7 @@ const newUser = (db, name)=>{
 };
 
 const newMessage = (db, sender, body)=>{
-    return new db.messageModel({sender, body}).save();
+    return new db.MessageModel({sender, body}).save();
 };
 
 const newChatBox = (db, chatBoxName)=>{

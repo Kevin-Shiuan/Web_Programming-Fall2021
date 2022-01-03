@@ -1,22 +1,16 @@
+import { makeName, checkUser, checkChatBox, newUser, newChatBox, checkMessage, newMessage } from './utility'
+
 const Subscription = {
-  comment: {
-    subscribe(parent, { postId }, { db, pubsub }, info) {
-      const post = db.posts.find(
-        (post) => post.id === postId && post.published,
-      );
-
-      if (!post) {
-        throw new Error('Post not found');
+  message: {
+    async subscribe(parent, {from, to},{db, pubsub}, info){
+      const chatBoxName = makeName(from, to);
+      let chatBox = await checkChatBox(db, chatBoxName, "Subscription")
+      if(!chatBox){
+        throw new Error("Chat Box not exist while Subscription");
       }
-
-      return pubsub.asyncIterator(`comment ${postId}`);
-    },
-  },
-  post: {
-    subscribe(parent, args, { pubsub }, info) {
-      return pubsub.asyncIterator('post');
-    },
-  },
+      return pubsub.asyncIterator(`chatBox ${chatBoxName}`);
+    }
+  }
 };
 
-export { Subscription as default };
+export default Subscription;

@@ -13,10 +13,9 @@ const pubsub = new PubSub();
 const server = new GraphQLServer({
   typeDefs: './src/schema.graphql',
   resolvers: {
-    //Query,
+    Query,
     Mutation,
-    //Subscription,
-    // User,
+    Subscription,
     Message,
     ChatBox,
   },

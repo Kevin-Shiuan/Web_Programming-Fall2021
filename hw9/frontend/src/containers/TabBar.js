@@ -1,19 +1,31 @@
 import { Tabs } from 'antd';
+import styled from 'styled-components'
+import ChatBox from './ChatBox'
 
-const { TabPane } = Tabs;
+const StyledTabs = styled(Tabs)`
+  width: 100%;
+  background: #eeeeee52;
+  border-radius: 16px;
+  margin: 20px;
+  padding: 20px;
+  display: flex;
+  width: "100%";
+`
+// const { TabPane } = Tabs;
 
-function TabBar({setActiveTabKey, plane, setPlane, openDialog, closeDialog}){
+function TabBar({username, activeKey, setActiveKey, chatBoxes, addChatBox, removeChatBox}){
+
   const onChange = (key) => {
-    setActiveTabKey(key);
-    // console.log(key);
+    setActiveKey(key);
   };
-  const onEdit = (key, action) => {
+
+  const onEdit = (targetkey, action) => {
     switch(action){
       case 'remove':
-        remove(key);
+        setActiveKey(removeChatBox(targetkey, activeKey));
         break;
       case 'add':
-        add();
+        addChatBox();
         break;
       default:
         console.log("action error");
@@ -22,31 +34,31 @@ function TabBar({setActiveTabKey, plane, setPlane, openDialog, closeDialog}){
     // console.log(action);
   };
 
-  const add = () => {
-    openDialog();
-    setPlane([...plane,{ title: 'New Tab', content: 'Content of new Tab' }]);
-  };
+  // const add = () => {
+  //   openDialog();
+  //   setPlane([...plane,{ title: 'New Tab', content: 'Content of new Tab' }]);
+  // };
 
-  const remove = (key) =>{
-    let newPlane = [...plane]
-    newPlane.splice(key,1);
-    setPlane(newPlane)
-  }
+  // const remove = (key) =>{
+  //   let newPlane = [...plane]
+  //   newPlane.splice(key,1);
+  //   setPlane(newPlane)
+  // }
 
   return(
-      <Tabs
+      <StyledTabs
           type="editable-card"
-          defaultActiveKey="0"
+          // tabBarStyle={{height: "336px"}}
+          activeKey={activeKey}
           onChange={onChange}
           onEdit={onEdit}
-          style={{width: "100%"}}
       >
-      {plane.map((pane, i) => (
-          <TabPane tab={pane.title} key={i} >
-              {pane.content}
-          </TabPane>
+      {chatBoxes.map((friend) => (
+          <Tabs.TabPane tab={friend} key={friend} closable={true} >
+              <ChatBox username={username} friend={friend} key={friend} />
+          </Tabs.TabPane>
           ))}
-      </Tabs>
+      </StyledTabs>
   )
 }
 

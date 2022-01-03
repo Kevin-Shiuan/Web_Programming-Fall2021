@@ -10,6 +10,10 @@ const Mutation = {
       console.log("User does not exist for createChatBox" + name1);
       await newUser(db, name1);
     }
+    if(!(await checkUser(db, name2, "createChatBox"))){
+      console.log("User does not exist for createChatBox" + name2);
+      await newUser(db, name2);
+    }
     const chatBoxName = makeName(name1, name2);
     let chatBox = await checkChatBox(db, chatBoxName, "createChatBox");
     if (!chatBox) chatBox = await newChatBox(db, chatBoxName);
@@ -23,7 +27,7 @@ const Mutation = {
       message,
       "createMesssage"
     );
-    if(!chatBox) throw new Error("ChatBox not found for crateMessage");
+    if(!chatBox) throw new Error("ChatBox not found for createMessage");
     if(!sender) throw new Error("User not found:" + from);
 
     const chatBoxName = makeName(from, to);
@@ -31,7 +35,7 @@ const Mutation = {
     chatBox.messages.push(newMsg);
     await chatBox.save();
 
-    pubsub.publish(`chatbox ${chatBoxName}`,{
+    pubsub.publish(`chatBox ${chatBoxName}`,{
       message: {mutation: "CREATED", message: newMsg},
     });
     return newMsg

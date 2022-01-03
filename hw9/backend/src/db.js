@@ -6,10 +6,10 @@ const ChatBoxSchema = new Schema({
         type: String,
         required: true
     }, 
-    messages: {
+    messages: [{
         type: mongoose.Types.ObjectId,
         ref: "Message"
-    }
+    }]
 });
 
 const MessageSchema = new Schema({
