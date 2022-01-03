@@ -43,6 +43,7 @@ function ChatRoom({username, displayStatus}){
         modalVisibility={modalVisibility} 
         username={username}
         handleCreate={async(username, name)=>{
+          console.log(username + name)
           await startChat({
             variables: {
               name1: username,

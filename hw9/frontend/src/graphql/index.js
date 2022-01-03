@@ -1,3 +1,3 @@
-export * from "./queries.js"
-export * from "./mutations.js"
-export * from "./subscriptions.js"
+export * from "./query.js"
+export * from "./mutation.js"
+export * from "./subscription.js"

@@ -15,7 +15,6 @@ const LOCALSTORAGE_KEY = "save-me";
 function App() {
   // const { status, messages, sendMessage, clearMessages } = useChat()
   const [username, setUsername] = useState('')
-  const [body, setBody] = useState('')
   const savedMe = localStorage.getItem(LOCALSTORAGE_KEY);
   const [me, setMe] = useState(savedMe||'')
   const [signedIn, setSignedIn] = useState(false)
