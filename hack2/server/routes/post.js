@@ -69,9 +69,8 @@ router.get('/postDetail', async(req, res) => {
 
 // TODO 4-(1): create the 3rd API (/api/newPost)
 router.post('/newPost', jsonParser, async(req, res) => {
-    // let msg = "error";
-    // // let success = false;
-    // // let rawData = [];
+    let msg = "success";
+    let status = 200
     // const filter = { postId : req.body.postId, title : req.body.title, content : req.body.content, timestamp : req.body.timestamp};
     // const update = { postId : req.body.postId, title : req.body.title, content : req.body.content, timestamp : req.body.timestamp};
     // const options = { upsert: true, new: true, rawResult: true };
@@ -84,7 +83,13 @@ router.post('/newPost', jsonParser, async(req, res) => {
           title: req.body.title,
           content: req.body.content,
           timestamp: req.body.timestamp
-        },
+        }
+    await Post.insert(newPost, function(err, doc){
+        if(doc.length === 0 || err){
+            msg = "error"
+            status = 403
+        }
+    })
 
 
 })
